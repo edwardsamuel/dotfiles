@@ -1,0 +1,12 @@
+#!/bin/bash
+
+HOST=$1
+if [ -z ""$HOST ]
+then
+	echo "Usage: "
+	echo "    $0 <HOST>"
+	exit 1
+fi
+
+kubectl exec -it "${HOST}" -- bash
+

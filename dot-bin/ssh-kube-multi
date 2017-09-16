@@ -1,0 +1,25 @@
+#!/bin/bash
+
+starttmux() {
+    if [ -z "$REGEX" ]; then
+       echo -n "Please provide grep regex [ENTER]: "
+       read REGEX
+    fi
+
+    local hosts=( `kubectl get pods | grep $REGEX | awk '{print $1}'` )
+
+
+    tmux new-window "kssh ${hosts[0]}"
+    unset hosts[0];
+    for i in "${hosts[@]}"; do
+        tmux split-window -h  "kssh $i"
+        tmux select-layout tiled > /dev/null
+    done
+    tmux select-pane -t 0
+    tmux set-window-option synchronize-panes on > /dev/null
+
+}
+
+REGEX=${REGEX:=$1}
+
+starttmux
