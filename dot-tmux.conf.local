@@ -1,0 +1,8 @@
+set -g mouse on
+bind-key -T root WheelUpPane   if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; copy-mode -e; send-keys -M"
+bind-key -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; send-keys -M"
+
+# Check if send key to all panes
+bind i set-window-option synchronize-panes
+tmux_conf_theme_status_right='#{?pane_synchronized, #[bg=blue]#[fg=black] SYNC #[default],} #{prefix}#{pairing} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} '
+

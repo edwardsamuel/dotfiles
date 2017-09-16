@@ -18,3 +18,8 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 ls | grep dot- | cut -d '-' -f 2 | xargs -n 1 -I {} ln -s -f `pwd`/dot-{} ~/.{}
 
 gcloud components install kubectl
+
+git submodule init
+git submodule update
+ln -s `pwd`/tmux/.tmux.conf ~/.tmux.conf
+

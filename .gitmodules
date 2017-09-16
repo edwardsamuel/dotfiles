@@ -4,3 +4,6 @@
 [submodule "color-schemes"]
 	path = color-schemes
 	url = https://github.com/mbadolato/iTerm2-Color-Schemes
+[submodule "tmux"]
+	path = tmux
+	url = https://github.com/gpakosz/.tmux
