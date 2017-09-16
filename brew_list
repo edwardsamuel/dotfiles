@@ -1,3 +1,4 @@
+antigen
 autoconf
 awscli
 dos2unix
@@ -26,3 +27,4 @@ tmux
 vim
 xz
 zsh
+zsh-completions

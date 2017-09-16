@@ -11,4 +11,10 @@ cat brew_list | xargs brew install
 cat brew_tap | xargs brew tap
 cat brew_cask_list | xargs brew cask install
 
+# Setup Oh-My-ZSH
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# Install dotfiles
 ls | grep dot- | cut -d '-' -f 2 | xargs -n 1 -I {} ln -s -f `pwd`/dot-{} ~/.{}
+
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k

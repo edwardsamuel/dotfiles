@@ -4,7 +4,6 @@ source /usr/local/share/antigen/antigen.zsh
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
 antigen bundle brew
 antigen bundle git
 antigen bundle docker
@@ -14,8 +13,7 @@ antigen bundle pip
 antigen bundle python
 antigen bundle kubectl
 antigen bundle command-not-found
-
-# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 
 # See also https://github.com/Falkor/dotfiles/blob/master/oh-my-zsh/
@@ -31,16 +29,13 @@ POWERLEVEL9K_FOLDER_ICON=''
 
 #DISABLE_AUTO_TITLE="true"
 
-POWERLEVEL9K_VCS_GIT_ICON=''
 POWERLEVEL9K_VCS_STAGED_ICON='\u00b1'
 POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
 POWERLEVEL9K_VCS_UNSTAGED_ICON='\u00b1'
 POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='\u2193'
 POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='\u2191'
-
 POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
 POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
-#POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs virtualenv rbenv rvm time)
@@ -75,4 +70,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export EDITOR='vim'
 export PATH="$PATH:~/.bin/"
 
-source ~/.zshrc.local
+if [ -f ~/.zshrc.local ];
+then
+	source ~/.zshrc.local
+fi
