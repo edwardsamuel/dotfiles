@@ -16,6 +16,7 @@ openssl
 pcre
 perl
 pkg-config
+postgresql
 python
 rbenv
 readline

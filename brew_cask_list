@@ -1,6 +1,7 @@
 docker
 enpass
 gogland
+google-backup-and-sync
 google-chrome
 google-cloud-sdk
 intellij-idea-ce
@@ -11,6 +12,8 @@ owasp-zap
 pgadmin4
 skype
 slack
+sourcetree
+sublime-text
 tunnelblick
 vagrant
 virtualbox
