@@ -46,6 +46,9 @@
 " Enable mouse scroll
 set mouse=a
 
+" Enable clipboard (copy and paste)
+set clipboard=unnamed
+
 " Sets how many lines of history VIM has to remember
 set history=500
 
