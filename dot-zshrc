@@ -70,6 +70,9 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export EDITOR='vim'
 export PATH="$PATH:~/.bin/"
 
+source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+
 if [ -f ~/.zshrc.local ];
 then
 	source ~/.zshrc.local
