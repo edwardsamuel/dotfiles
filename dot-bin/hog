@@ -1,5 +1,6 @@
 #!/bin/bash
 
 FORMAT=$1
-PATTERN=$2
-grep ${PATTERN} /etc/hosts | awk "{print \$${FORMAT}}"
+shift
+
+cat /etc/hosts | grep $@ | awk "{print \$${FORMAT}}"
