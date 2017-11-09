@@ -1,5 +1,8 @@
+caffeine
+clipy
 docker
 enpass
+firefox
 gogland
 google-backup-and-sync
 google-chrome
@@ -8,8 +11,11 @@ intellij-idea-ce
 iterm2
 java
 kdiff3
+meld
+oversight
 owasp-zap
 pgadmin4
+postman
 skype
 slack
 sourcetree
