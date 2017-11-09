@@ -5,7 +5,7 @@ echo "${SEPARATOR}" > /tmp/hosts_gcloud
 
 PROJECT=$1
 echo "## Google Cloud Project: ${PROJECT}" >> /tmp/hosts_gcloud
-gcloud compute instances list --project ${PROJECT} --format 'table[no-heading](networkInterfaces[0].networkIP, name)' >> /tmp/hosts_gcloud
+gcloud compute instances list --project ${PROJECT} --sort-by name --format 'table[no-heading](networkInterfaces[0].networkIP, name)' >> /tmp/hosts_gcloud
 
 ( grep -B 10000 -m 1 "${SEPARATOR}" /etc/hosts || cat /etc/hosts ) | grep -v "${SEPARATOR}" > /tmp/hosts_orig
 cat /tmp/hosts_orig /tmp/hosts_gcloud | sudo tee /etc/hosts
