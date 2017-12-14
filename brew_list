@@ -11,6 +11,7 @@ htop
 icu4c
 libevent
 libyaml
+kubectl
 node
 openssl
 pcre
