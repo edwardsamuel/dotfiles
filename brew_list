@@ -9,6 +9,7 @@ gnu-tar
 go
 htop
 icu4c
+jq
 libevent
 libyaml
 kubectl
