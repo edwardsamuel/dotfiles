@@ -11,6 +11,7 @@ freetype
 gd
 gdbm
 gettext
+ghostscript
 git
 glide
 gnu-sed
@@ -29,6 +30,7 @@ libpng
 libtiff
 libtool
 libyaml
+little-cms2
 mercurial
 node
 oniguruma
