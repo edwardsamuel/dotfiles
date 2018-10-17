@@ -10,7 +10,7 @@ cat brew_tap | xargs brew tap
 brew update && brew outdated
 brew upgrade && brew cleanup
 cat brew_cask_list | xargs brew cask install
-brew cask outdated -q | xargs brew cask reinstall
+brew cask outdated --quiet | xargs brew cask reinstall
 
 # Setup Oh-My-ZSH
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
