@@ -1,3 +1,17 @@
+# vim
 *~
+
+# Mac
 .DS_Store
+
+# InteliJ
 .idea
+
+# Windows
+Thumbs.db
+
+# General
+log/
+*.log
+*.orig
+

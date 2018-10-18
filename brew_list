@@ -36,6 +36,7 @@ libyaml
 little-cms2
 mercurial
 mtr
+ncurses
 node
 oniguruma
 openssh
@@ -43,6 +44,7 @@ openssl
 openssl@1.1
 parallel
 pcre
+pcre2
 perl
 pkg-config
 postgresql

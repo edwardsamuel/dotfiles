@@ -23,3 +23,7 @@ git submodule init
 git submodule update
 ln -s `pwd`/tmux/.tmux.conf ~/.tmux.conf
 
+# Setup git
+git config --global url."https://github.com/".insteadOf git@github.com:
+git config --global core.excludesfile ~/.gitignore_global
+
