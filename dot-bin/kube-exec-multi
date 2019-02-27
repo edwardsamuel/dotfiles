@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+REGEX=${REGEX:=$1}
+shift
+
+if [ -z "$REGEX" ]; then
+   echo -n "Please provide grep regex [ENTER]: "
+   read REGEX
+fi
+
+hosts=( `kubectl get pods | grep $REGEX | awk '{print $1}'` )
+for i in "${hosts[@]}"; do
+    echo "Executing in $i..."
+    kubectl exec $i $@
+done
