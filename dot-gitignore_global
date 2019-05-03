@@ -11,7 +11,9 @@
 Thumbs.db
 
 # General
-log/
+/log
+/env
+/venv
 *.log
 *.orig
 
