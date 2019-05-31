@@ -9,7 +9,7 @@ if [ -z "$REGEX" ]; then
    read REGEX
 fi
 
-hosts=( `kubectl get pods | grep $REGEX | awk '{print $1}'` )
+hosts=( `kubectl get pods -o wide | grep $REGEX | awk '{print $1}'` )
 for i in "${hosts[@]}"; do
     echo "Executing in $i..."
     kubectl exec $i $@

@@ -4,8 +4,9 @@
 # Mac
 .DS_Store
 
-# InteliJ
+# IDE
 .idea
+.vscode
 
 # Windows
 Thumbs.db

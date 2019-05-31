@@ -29,3 +29,8 @@ then
 	source ~/.zshrc.local
 fi
 
+alias jql="jq -c -R -r '. as \$line | try fromjson catch \$line'"
+alias jqb="jq -R -r '. as \$line | try fromjson catch \$line'"
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

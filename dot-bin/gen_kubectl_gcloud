@@ -1,0 +1,24 @@
+#!/bin/bash
+
+function locationGcloudParam {
+  if [[ "$1" == *"-"*"-"* ]]; then
+    echo "--zone=$1"
+  else
+    echo "--region=$1"
+  fi
+}
+
+function kubectlGetCredential {
+  name=$1
+  location=$2
+
+  echo $1 $(locationGcloudParam $location)
+}
+
+cl=`gcloud container clusters list --format 'table[no-heading](name, zone)'`
+for i in $cl; do
+  echo $i
+  shift
+  echo "---"
+done
+echo $cl

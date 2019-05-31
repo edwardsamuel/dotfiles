@@ -3,4 +3,4 @@
 FORMAT=$1
 shift
 
-cat /etc/hosts | grep $@ | awk "{print \$${FORMAT}}"
+cat /etc/hosts | grep -v ^# | grep $@ | awk "{print \$${FORMAT}}"

@@ -8,5 +8,8 @@ then
 	exit 1
 fi
 
-kubectl exec -it "${HOST}" -- bash
+COLUMNS=`tput cols`
+LINES=`tput lines`
+TERM=xterm
+kubectl exec -it "${HOST}" -- env COLUMNS=$COLUMNS LINES=$LINES TERM=$TERM bash
 
