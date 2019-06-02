@@ -52,6 +52,7 @@ protobuf
 python
 python3
 python@2
+python-yq
 rbenv
 readline
 ruby
