@@ -27,3 +27,6 @@ ln -s `pwd`/tmux/.tmux.conf ~/.tmux.conf
 git config --global url."git@github.com:".insteadOf "https://github.com/"
 git config --global core.excludesfile ~/.gitignore_global
 
+# Install fzf
+yes | /usr/local/opt/fzf/install
+
