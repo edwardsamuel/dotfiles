@@ -1,24 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-function locationGcloudParam {
-  if [[ "$1" == *"-"*"-"* ]]; then
-    echo "--zone=$1"
-  else
-    echo "--region=$1"
-  fi
-}
-
-function kubectlGetCredential {
-  name=$1
-  location=$2
-
-  echo $1 $(locationGcloudParam $location)
-}
-
-cl=`gcloud container clusters list --format 'table[no-heading](name, zone)'`
-for i in $cl; do
-  echo $i
-  shift
-  echo "---"
+for i in "$@"
+do
+  PROJECT=$i
+  echo "## Google Cloud Project: ${PROJECT}" | tee -a /tmp/hosts_gcloud
+  gcloud container clusters list --project ${PROJECT} --format 'table[no-heading](name, location)' | xargs -n 2 sh -c "gcloud container clusters get-credentials --project ${PROJECT} \$1 --zone \$2" sh
 done
-echo $cl
+
