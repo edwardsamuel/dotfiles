@@ -4,6 +4,11 @@ export PIP_REQUIRE_VIRTUALENV=true
 export EDITOR='vim'
 export PATH="$PATH:$HOME/.bin/"
 
+# Setup Go
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export PATH="$GOBIN:$PATH"
+
 # Load Antigen
 if [ -f ${HOME}/.antigen/bin/antigen.zsh ];
 then
