@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
+# Removing GKE context
+echo "Removing GKE contexts..."
+kubectl config view -o jsonpath='{range .contexts[*]}{.context.cluster}{"\t"}{.context.user}{"\t"}{.name}{"\n"}{end}' | grep ^gke_ | xargs -n 3 -P 1 sh -c "kubectl config unset contexts.\$3 && kubectl config unset clusters.\$1 && kubectl config unset users.\$2" sh
+
 for i in "$@"
 do
   PROJECT=$i
   echo "## Google Cloud Project: ${PROJECT}" | tee -a /tmp/hosts_gcloud
-  kubectl config get-clusters | grep ^gke_${PROJECT} | xargs -n 1 kubectl config delete-cluster
-  gcloud container clusters list --project ${PROJECT} --format 'table[no-heading](name, location)' | xargs -n 2 sh -c "gcloud container clusters get-credentials --project ${PROJECT} \$1 --zone \$2" sh
-  kubectl config get-contexts -o name | grep ^gke_${PROJECT}_ | xargs -n 1 sh -c "kubectl config rename-context \$1 \$(echo \$1 | awk -F '_' '{print \$4}')" sh
+  gcloud container clusters list --project ${PROJECT} --format 'table[no-heading](name, location)' | xargs -n 2 -P 1 sh -c "gcloud container clusters get-credentials --project ${PROJECT} \$1 --zone \$2" sh
+  kubectl config get-contexts -o name | grep ^gke_${PROJECT}_ | xargs -n 1 -P 1 sh -c "kubectl config rename-context \$1 \$(echo \$1 | awk -F '_' '{print \$4}')" sh
 done
 
