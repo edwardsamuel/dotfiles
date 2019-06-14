@@ -3,3 +3,4 @@ homebrew/bundle
 homebrew/core
 homebrew/dupes
 homebrew/services
+homebrew/cask-fonts
