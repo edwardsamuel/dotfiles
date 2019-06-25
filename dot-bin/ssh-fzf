@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ssh-multi $(cat /etc/hosts | grep -v '^#' | grep -v '^$' | grep -v 'localhost' | grep -v 'broadcasthost' | awk '{ print $2 }' | sort | fzf --multi --reverse --preview 'hog 0 {}' --preview-window down:1 --query="$@")
