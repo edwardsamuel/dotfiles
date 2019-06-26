@@ -1,15 +1,14 @@
 #!/bin/bash
 
-HOST=$1
-if [ -z ""$HOST ]
-then
-	echo "Usage: "
-	echo "    $0 <HOST>"
-	exit 1
+k8s_context=$(kubectl config current-context)
+k8s_namespace=$(kubectl config view -o jsonpath='{range .contexts[?(@.name == "'${k8s_context}'")]}{.context.namespace}{end}')
+selection=($(kubectl --context ${k8s_context} get pods | grep -v ^NAME | fzf --multi --reverse --select-1 --query="$@" --header="Cluster: ${k8s_context} | Namespace: ${k8s_namespace:-default}" | awk '{print $1}'))
+
+if [ ${#selection[@]} -eq 1 ]; then
+    kubectl exec --context ${k8s_context} -ti ${selection[0]} -- bash
+elif [ ${#selection[@]} -gt 1 ]; then
+    # ssh-kube-multi ${selection[@]}
+    echo "Not supported"
+else
+    exit 0
 fi
-
-COLUMNS=`tput cols`
-LINES=`tput lines`
-TERM=xterm
-kubectl exec -it "${HOST}" -- env COLUMNS=$COLUMNS LINES=$LINES TERM=$TERM bash
-
