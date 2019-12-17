@@ -9,6 +9,5 @@ do
   PROJECT=$i
   echo "## Google Cloud Project: ${PROJECT}" | tee -a /tmp/hosts_gcloud
   gcloud container clusters list --project ${PROJECT} --format 'table[no-heading](name, location)' | xargs -n 2 -P 1 sh -c "gcloud container clusters get-credentials --project ${PROJECT} \$1 --zone \$2" sh
-  kubectl config get-contexts -o name | grep ^gke_${PROJECT}_ | xargs -n 1 -P 1 sh -c "kubectl config rename-context \$1 \$(echo \$1 | awk -F '_' '{print \$4}')" sh
+  kubectl config get-contexts -o name | grep ^gke_${PROJECT}_ | xargs -n 1 -P 1 sh -c "kubectl config set-context \$(echo \$1 | awk -F '_' '{print \$4}') --cluster \$1 --user \$1" sh
 done
-

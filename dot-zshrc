@@ -24,6 +24,9 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 
+export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+export CGO_CFLAGS_ALLOW=-Xpreprocessor
+
 source ~/.aliases
 if [ -f ~/.aliases.local ];
 then
@@ -39,3 +42,6 @@ alias jqb="jq -R -r '. as \$line | try fromjson catch \$line'"
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Custom completions
+compdef _hosts ssh-multi
