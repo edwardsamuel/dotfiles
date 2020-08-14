@@ -1,12 +1,9 @@
 antigen use oh-my-zsh
 
-# antigen bundle brew
 antigen bundle git
 antigen bundle docker
-antigen bundle go
-# antigen bundle tmux
-antigen bundle pip
-# antigen bundle python
+antigen bundle gcloud
+antigen bundle golang
 antigen bundle kubectl
 antigen bundle command-not-found
 antigen bundle zsh-users/zsh-autosuggestions

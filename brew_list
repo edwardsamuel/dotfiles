@@ -2,6 +2,7 @@ antigen
 autoconf
 automake
 awscli
+bash-completion
 colordiff
 coreutils
 ctags
@@ -67,3 +68,4 @@ wget
 xz
 zsh
 zsh-completions
+getantibody/tap/antibody

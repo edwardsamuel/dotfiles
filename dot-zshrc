@@ -9,6 +9,11 @@ export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$GOBIN:$PATH"
 
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+
+source ${HOME}/.powerlevel9k
+
 # Load Antigen
 if [ -f ${HOME}/.antigen/bin/antigen.zsh ];
 then
@@ -16,13 +21,13 @@ then
 else
     source /usr/local/share/antigen/antigen.zsh
 fi
-source ${HOME}/.antigentheme
 antigen init ${HOME}/.antigenrc
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# Load Antibody
+#source <(antibody init)
+#source ${HOME}/.antigenrc
 
-source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
 export CGO_CFLAGS_ALLOW=-Xpreprocessor
