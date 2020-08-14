@@ -45,3 +45,8 @@ alias jqb="jq -R -r '. as \$line | try fromjson catch \$line'"
 
 # Custom completions
 compdef _hosts ssh-multi
+compdef _hosts mssh
+
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

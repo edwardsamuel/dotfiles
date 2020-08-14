@@ -49,9 +49,8 @@ perl
 pkg-config
 postgresql
 protobuf
-python
-python3
-python@2
+pyenv
+pyenv-virtualenv
 python-yq
 rbenv
 readline

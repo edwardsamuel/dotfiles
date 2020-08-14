@@ -32,3 +32,7 @@ yes | /usr/local/opt/fzf/install
 
 # Install i2cssh
 gem install i2cssh
+
+pyenv install 2.7.18
+pyenv install 3.6.11
+pyenv install 3.7.8
