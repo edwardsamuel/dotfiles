@@ -12,9 +12,6 @@ brew upgrade && brew cleanup
 cat brew_cask_list | grep -v ^# | xargs brew cask install
 brew cask outdated --quiet | xargs brew cask reinstall
 
-# Setup Oh-My-ZSH
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
 # Install dotfiles
 ls -p | grep -v / | grep dot- | cut -d '-' -f 2 | xargs -n 1 -I {} ln -s -f `pwd`/dot-{} ~/.{}
 ls -p | grep / | grep dot- | cut -d '-' -f 2 | cut -d '/' -f 1 | xargs -n 1 -I {} sh -c '[ ! -e ~/.{} ] && ln -s -f `pwd`/dot-{} ~/.{}'
