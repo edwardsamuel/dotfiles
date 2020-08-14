@@ -1,57 +1,77 @@
 export TERM="xterm-256color"
 export DEFAULT_USER="$USER"
-export PIP_REQUIRE_VIRTUALENV=true
 export EDITOR='vim'
 export PATH="$PATH:$HOME/.bin/"
 
-# Setup Go
-export GOPATH="$HOME/go"
-export GOBIN="$GOPATH/bin"
-export PATH="$GOBIN:$PATH"
+# History
+HISTFILE=~/.zsh_history
+SAVEHIST=50000
 
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
+# Autocompletions
+autoload -Uz compinit
+typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+if [ $(date +'%j') != $updated_at ]; then
+  compinit -i
+else
+  compinit -C -i
+fi
+zmodload -i zsh/complist
 
+# Options
+setopt auto_list # automatically list choices on ambiguous completion
+setopt auto_menu # automatically use menu completion
+setopt always_to_end # move cursor to end if word had one match
+
+# Autocompletion style
+zstyle ':completion:*' menu select # select completions with arrow keys
+zstyle ':completion:*' group-name '' # group results by category
+zstyle ':completion:::::' completer _expand _complete _ignored _approximate # enable approximate matches for completion
+
+# Powerlevel9k Theme
 source ${HOME}/.powerlevel9k
 
 # Load Antigen
-if [ -f ${HOME}/.antigen/bin/antigen.zsh ];
-then
-    source ${HOME}/.antigen/bin/antigen.zsh
-else
-    source /usr/local/share/antigen/antigen.zsh
-fi
-antigen init ${HOME}/.antigenrc
+#if [ -f ${HOME}/.antigen/bin/antigen.zsh ];
+#then
+#    source ${HOME}/.antigen/bin/antigen.zsh
+#else
+#   source /usr/local/share/antigen/antigen.zsh
+#fi
+#antigen init ${HOME}/.antigenrc
 
-# Load Antibody
-#source <(antibody init)
-#source ${HOME}/.antigenrc
+# Oh-my-zsh for Antibody
+DISABLE_AUTO_UPDATE=true
+ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
+ZSH_CACHE_DIR="$HOME/.oh-my-zsh/cache"
+[ -d "${ZSH_CACHE_DIR}" ] || mkdir -p "${ZSH_CACHE_DIR}"
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
-export CGO_CFLAGS_ALLOW=-Xpreprocessor
-
-source ~/.aliases
-if [ -f ~/.aliases.local ];
-then
-	source ~/.aliases.local
-fi
-if [ -f ~/.zshrc.local ];
-then
-	source ~/.zshrc.local
-fi
-
-alias jql="jq -c -R -r '. as \$line | try fromjson catch \$line'"
-alias jqb="jq -R -r '. as \$line | try fromjson catch \$line'"
-
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Antibody
+source <(antibody init)
+antibody bundle < ~/.antibody.plugins.txt
 
 # Custom completions
 compdef _hosts ssh-multi
-compdef _hosts mssh
 
+# Golang
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export PATH="$GOBIN:$PATH"
+export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+export CGO_CFLAGS_ALLOW=-Xpreprocessor
+
+# Python
+export PIP_REQUIRE_VIRTUALENV=true
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# Ruby
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# Fuzzy search
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# External sources
+source ~/.aliases
+[ -f ~/.aliases.local ] && source ~/.aliases.local
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local

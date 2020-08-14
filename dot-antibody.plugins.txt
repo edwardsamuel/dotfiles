@@ -1,9 +1,10 @@
 robbyrussell/oh-my-zsh
+robbyrussell/oh-my-zsh path:plugins/command-not-found
+robbyrussell/oh-my-zsh path:plugins/fzf
 robbyrussell/oh-my-zsh path:plugins/git
+robbyrussell/oh-my-zsh path:plugins/gcloud
 robbyrussell/oh-my-zsh path:plugins/golang
 robbyrussell/oh-my-zsh path:plugins/kubectl
-robbyrussell/oh-my-zsh path:plugins/command-not-found
+zdharma/fast-syntax-highlighting
 zsh-users/zsh-autosuggestions
-zsh-users/zsh-syntax-highlighting
-robbyrussell/oh-my-zsh path:plugins/fzf
 romkatv/powerlevel10k
